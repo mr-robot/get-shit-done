@@ -44,7 +44,7 @@ def ini_to_array(ini_file):
 hosts_file = '/etc/hosts'
 
 if "win32" in sys.platform:
-    hosts_file = '/Windows/System32/drivers/etc/hosts'
+    hosts_file = 'C:/Windows/System32/drivers/etc/hosts'
 
 start_token = '## start-gsd'
 end_token = '## end-gsd'
@@ -56,6 +56,10 @@ def rehash():
 def work():
     hFile = open(hosts_file, 'a+')
     contents = hFile.read()
+    
+    hFile.close()
+    
+    hFile = open(hosts_file, 'a+')
 
     if start_token in contents and end_token in contents:
         exit_error("Work mode already set.")
